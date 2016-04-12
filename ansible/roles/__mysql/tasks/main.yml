@@ -1,0 +1,10 @@
+- name: yum install for mysqld
+  yum: name=mysql-server state=latest
+  with_items:
+    - mysqld
+- name: Start to mysql
+  service: name=mysqld enabled=yes
+
+- name: Start to mysql
+  service: name=mysqld state=started
+
