@@ -2,6 +2,7 @@
     daily
     rotate 31
     compres
+    dateext
     missingok
     notifempty
     sharedscripts
