@@ -9,15 +9,21 @@
 - name: Start to Apache
   service: name=httpd state=started
 
-- name: Change the httpd.conf to template file ( Apache 2.2 )
+- name: Change the httpd.conf to template file ( CentOS6 Apache 2.2 )
   copy: src=httpd22.conf dest=/etc/httpd/conf/httpd.conf owner=root group=root mode=0644
   when: ansible_os_family == 'RedHat' and ansible_distribution_version.split('.')[0]|int == 6
   notify: restart httpd
 
-- name: Change the httpd.conf to template file ( Apache 2.4 )
+- name: Change the httpd.conf to template file ( Amazon Linux Apache 2.2 )
+  copy: src=httpd22.conf dest=/etc/httpd/conf/httpd.conf owner=root group=root mode=0644
+  when: ansible_distribution == 'Amazon'
+  notify: restart httpd
+
+- name: Change the httpd.conf to template file ( CentOS7 Apache 2.4 )
   copy: src=httpd24.conf dest=/etc/httpd/conf/httpd.conf owner=root group=root mode=0644
   when: ansible_os_family == 'RedHat' and ansible_distribution_version.split('.')[0]|int == 7
   notify: restart httpd
+
 
 - name: Clear the autoindex.conf
   copy: src=autoindex.conf dest=/etc/httpd/conf.d/autoindex.conf owner=root group=root mode=0644
