@@ -44,3 +44,11 @@
   file: path=/var/www/{{ item.domain }} state=directory owner={{ item.owner }} group={{ item.owner }} mode=0755
   with_items:
     - "{{ site }}"
+
+- name: logrotate ( Apache 2.2 )
+  copy: src=logrotate-http22 dest=/etc/logrotate.d/httpd owner=root group=root mode=0644
+  when: ansible_os_family == 'RedHat' and ansible_distribution_version.split('.')[0]|int == 6
+
+- name: logrotate ( Apache 2.4 )
+  copy: src=logrotate-http24 dest=/etc/logrotate.d/httpd owner=root group=root mode=0644
+  when: ansible_os_family == 'RedHat' and ansible_distribution_version.split('.')[0]|int == 7
