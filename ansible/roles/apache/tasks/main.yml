@@ -19,6 +19,14 @@
   when: ansible_os_family == 'RedHat' and ansible_distribution_version.split('.')[0]|int == 7
   notify: restart httpd
 
+- name: Clear the autoindex.conf
+  copy: src=autoindex.conf dest=/etc/httpd/conf.d/autoindex.conf owner=root group=root mode=0644
+  notify: restart httpd
+
+- name: Clear the welcome.conf
+  copy: src=welcome.conf dest=/etc/httpd/conf.d/welcome.conf owner=root group=root mode=0644
+  notify: restart httpd
+
 - name: Makes to Defalut Virtual Host
   template: src=_default_.conf dest=/etc/httpd/conf.d/_default_.conf
   notify: restart httpd
