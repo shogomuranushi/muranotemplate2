@@ -12,12 +12,12 @@ UserData on EC2 add the this code.
     # Remove the comment, if necessary.
     # ansible-playbook muranotemplate2/ansible/nrpe.yml --extra-vars "nagiosserver=,11.22.33.44"
 
-    # ansible-playbook muranotemplate2/ansible/apache.yml
     # cat <<EOF > muranotemplate2/ansible/roles/apache/vars/main.yml
     # site:
     #  - { domain: "www.test1.com", owner: "root" }
     #  - { domain: "www.test2.co.jp", owner: "apache" }
     # EOF
+    # ansible-playbook muranotemplate2/ansible/apache.yml
 
     # ansible-playbook muranotemplate2/ansible/php.yml
     # ansible-playbook playbook/vsftpd.yml --extra-vars "eip=22.33.44.55"
