@@ -11,6 +11,8 @@
 - name: Start to vsftpd
   service: name=vsftpd state=started
 
-- name: Chanfed vsftpd.conf
-  template: src=vsftpd.conf dest=/etc/vsftpd/ owner=root group=root mode=0600
-  notify: restart vsftpd
+- include: centos7-vsftpd30.yml
+  when: ansible_os_family == 'RedHat' and ansible_distribution_version.split('.')[0]|int == 7
+
+- include: amazon-linux-vsftpd22.yml
+  when: ansible_distribution == 'Amazon'
