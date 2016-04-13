@@ -24,9 +24,9 @@ UserData on EC2 add the this code.
     # ansible-playbook muranotemplate2/ansible/apache.yml
 
     ### vsftpd
-    # ansible-playbook playbook/vsftpd.yml --extra-vars "eip=22.33.44.55"
+    # ansible-playbook muranotemplate2/ansible/vsftpd.yml --extra-vars "eip=22.33.44.55"
  
-    ### PHP ( Only CentOS7 )
+    ### PHP ( Only CentOS7 and Amazon Linux )
     # ansible-playbook muranotemplate2/ansible/php.yml
 
     ### SE Linux Desable
