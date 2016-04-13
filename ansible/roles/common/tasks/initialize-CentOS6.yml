@@ -9,23 +9,3 @@
 
 - name: (Initialize) Locale setting ( CentOS 6 )
   replace: dest="/etc/sysconfig/i18n" regexp='^LANG=en_US\.UTF-8' replace='LANG=ja_JP.UTF-8'
-
-- name: (Initialize) SELinux desabled initialize
-  yum: name=libselinux-python state=latest
-
-- name: (Initialize) SELinux desabled
-  selinux: state=disabled
-  register: st
-
-- name: reboot if SELinux changed
-  shell: shutdown -r now "Ansible updates triggered"
-  async: 0
-  poll: 0
-  ignore_errors: true
-  when: st.changed
-
-- name: waiting for server to reboot
-  wait_for: host="{{ ansible_ssh_host | default(inventory_hostname) }}" port={{ ansible_ssh_port | default(22) }} search_regex=OpenSSH delay=30 timeout=120
-  connection: local
-  become: false
-  when: st.changed
